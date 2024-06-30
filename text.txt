@@ -1,0 +1,18 @@
+private ConstraintLayout layout;
+private boolean check = false;
+ 
+layout = findViewById(R.id.main);
+
+void moveTextView(){
+        ConstraintSet constraintSet = new ConstraintSet();
+        constraintSet.clone(layout);
+        if(check){
+            constraintSet.connect(R.id.txt2, ConstraintSet.START, R.id.txt1, ConstraintSet.END);
+            constraintSet.clear(R.id.txt2, ConstraintSet.END);
+        }else{
+            constraintSet.connect(R.id.txt2, ConstraintSet.END, R.id.txt3, ConstraintSet.START);
+            constraintSet.clear(R.id.txt2, ConstraintSet.START);
+        }
+        constraintSet.applyTo(layout);
+        check = !check;
+}

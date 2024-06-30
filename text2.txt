@@ -1,0 +1,31 @@
+ public void view_Clicked(View view) {
+        //view.setVisibility(View.INVISIBLE);
+        if (theFirstView == null)
+            theFirstView = view;
+        else {
+            theSecondView = view;
+            // Swap the background colors of the views
+            int temp = ((ColorDrawable) theFirstView.getBackground()).getColor();
+            theFirstView.setBackgroundColor(((ColorDrawable) theSecondView.getBackground()).getColor());
+            theSecondView.setBackgroundColor(temp);
+            // Get the current width and height of the views
+            int firstWidth = theFirstView.getWidth();
+            int firstHeight = theFirstView.getHeight();
+            int secondWidth = theSecondView.getWidth();
+            int secondHeight = theSecondView.getHeight();
+            // Create new layout parameters for the views
+            ViewGroup.LayoutParams firstParams = theFirstView.getLayoutParams();
+            ViewGroup.LayoutParams secondParams = theSecondView.getLayoutParams();
+            // Swap the width and height of the views
+            firstParams.width = secondWidth;
+            firstParams.height = secondHeight;
+            secondParams.width = firstWidth;
+            secondParams.height = firstHeight;
+            // Apply the new layout parameters to the views
+            theFirstView.setLayoutParams(firstParams);
+            theSecondView.setLayoutParams(secondParams);
+            // Reset the references to the views
+            theFirstView = null;
+            theSecondView = null;
+        }
+    }
